@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input[type="submit"] {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Online Quiz</h1>
+  <form id="quizForm">
+    <label>1. What is the capital of France?</label>
+    <input type="radio" name="q1" value="a"> a) Paris<br>
+    <input type="radio" name="q1" value="b"> b) London<br>
+    <input type="radio" name="q1" value="c"> c) Rome<br>
+
+    <label>2. What is the largest planet in our solar system?</label>
+    <input type="radio" name="q2" value="a"> a) Jupiter<br>
+    <input type="radio" name="q2" value="b"> b) Mars<br>
+    <input type="radio" name="q2" value="c"> c) Saturn<br>
+
+    <label>3. Who painted the Mona Lisa?</label>
+    <input type="radio" name="q3" value="a"> a) Leonardo da Vinci<br>
+    <input type="radio" name="q3" value="b"> b) Pablo Picasso<br>
+    <input type="radio" name="q3" value="c"> c) Vincent van Gogh<br>
+
+    <label>4. What is the chemical symbol for gold?</label>
+    <input type="radio" name="q4" value="a"> a) Au<br>
+    <input type="radio" name="q4" value="b"> b) Ag<br>
+    <input type="radio" name="q4" value="c"> c) Hg<br>
+
+    <label>5. What is the tallest mountain in the world?</label>
+    <input type="radio" name="q5" value="a"> a) Mount Kilimanjaro<br>
+    <input type="radio" name="q5" value="b"> b) Mount Everest<br>
+    <input type="radio" name="q5" value="c"> c) Mount McKinley<br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    // Function to calculate the score
+    function calculateScore(form) {
+      var score = 0;
+
+      // Get the selected answers
+      var answers = [
+        form.q1.value,
+        form.q2.value,
+        form.q3.value,
+        form.q4.value,
+        form.q5.value
+      ];
+
+      // Calculate the score
+      for (var i = 0; i < answers.length; i++) {
+        if (answers[i] === "a") {
+          score++;
+        }
+      }
+
+      return score;
+    }
+
+    // Function to handle form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      var form = event.target;
+      var score = calculateScore(form);
+
+      // Display the score
+      var resultDiv = document.getElementById("result");
+resultDiv.textContent = "Your score: " + score + "/5";
+    }
+
+    var quizForm = document.getElementById("quizForm");
+    quizForm.addEventListener("submit", handleSubmit);
+
+    </script>
+    </body>
+</html>
